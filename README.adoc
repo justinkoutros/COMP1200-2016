@@ -5,6 +5,10 @@ Midterm is on February 11.
 == Resources
 
 * http://sourceforge.net/projects/circuit/files/latest/download[Download Logisim]
+<<<<<<< HEAD
+=======
+* https://github.com/lawrancej/COMP1200-2016/blob/master/Circuits/cpu-16bit-isa.adoc[CPU instruction set]
+>>>>>>> f1c7f51d3c17babd75fdd5919b2e89f085b041e4
 
 NOTE: For the folks on Mac, open Terminal (Applications -> Utilities -> Terminal)
 
@@ -30,3 +34,30 @@ January 25:: https://github.com/lawrancej/COMP1200-2016/blob/master/Lectures/[St
 January 27:: https://github.com/lawrancej/COMP1200-2016/blob/master/Lectures/[State machine example]
 January 28:: https://github.com/lawrancej/COMP1200-2016/blob/master/Labs/[Lab 3: State machine implementation]
 January 29:: https://github.com/lawrancej/COMP1200-2016/blob/master/Lectures/[More state machines].
+<<<<<<< HEAD
+=======
+February 1:: https://github.com/lawrancej/COMP1200-2016/blob/master/Lectures/[CPU walkthrough].
+February 3:: https://github.com/lawrancej/COMP1200-2016/blob/master/Lectures/[Programming the CPU]
+February 4:: https://github.com/lawrancej/COMP1200-2016/blob/master/Labs/[Lab 4: Machine language programming]
+February 5:: Class canceled
+February 8:: Class canceled
+February 10:: https://github.com/lawrancej/COMP1200-2016/blob/master/Exams/[Midterm practice]
+February 11:: Midterm
+February 12:: https://github.com/lawrancej/COMP1200-2016/blob/master/Lectures/[Memory hierarchy, displays]
+February 15:: President's day (observed)
+February 17:: Get midterms back.
+February 18:: https://github.com/lawrancej/COMP1200-2016/blob/master/Labs/[Lab 5: More Logic to ROM]
+February 19:: https://github.com/lawrancej/COMP1200-2016/blob/master/Lectures/[Encodings]
+February 22:: https://github.com/lawrancej/COMP1200-2016/blob/master/Lectures/[Lab 3 hints]
+February 24:: https://github.com/lawrancej/COMP1200-2016/blob/master/Lectures/[CPU stuff]
+February 25:: https://github.com/lawrancej/COMP1200-2016/blob/master/Labs/[Lab 6: Group project setup]
+February 26:: https://github.com/lawrancej/COMP1200-2016/blob/master/Lectures/[Memory mapped output]
+February 29:: https://github.com/lawrancej/COMP1200-2016/blob/master/Lectures/[Memory mapped input (broken)]
+March 2:: Recursion, stack frames, Postfix (RPN)
+March 3:: Group project: CPU research
+March 4:: Speed
+March 14:: https://github.com/fulldecent/system-bus-radio[Radio via system bus?!? Crazy]
+March 21:: Virtual machines
+April 11:: Last day to present before final presentations start
+Final presentation:: April 15 from 10:15am-12:15pm at Wentworth 307
+>>>>>>> f1c7f51d3c17babd75fdd5919b2e89f085b041e4

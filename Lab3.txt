@@ -1,0 +1,61 @@
+Lab 3
+1. Answer these questions about the state machine above.
+  i. List all possible inputs. How many do we have?
+  The number of inputs is 4: nothing, nickel, dime, and quarter.
+  ii. List all possible states. How many do we have?
+  There are five states: 0 cents, 5 cents, 10 cents, 15 cents, 20 cents.
+  iii. The output bits are: vend and return.
+  Vend: 1 bit, Return: 3 bits.
+  iv. How many bits for state will you need?
+  3 bits
+  v. How many input bits will you need?
+  2 bits
+2. Assign states to bits, inputs to bits and use a bit for each output.
+The state bits are:
+0 (0 cents)    000
+1 (5 cents)    001
+2 (10 cents)   010
+3 (15 cents)   011
+4 (20 cents)   100
+The input bits are:
+Nothing: 00
+Nickel:  01
+Dime:    10
+Quarter: 11
+Vend bits:
+0 - Don't vend (False)
+1 - Vend (True)
+Return bits:
+0 cents:  000
+5 cents:  001
+10 cents: 010
+15 cents: 011
+20 cents: 100
+
+3. Write out a state-transition table.
+Current State     Input       Next      Vend     Return          
+   0   0   0      0  0     0   0   0      0     0   0   0
+   0   0   0      0  1     0   0   1      0     0   0   0
+   0   0   0      1  0     0   1   0      0     0   0   0
+   0   0   0      1  1     0   0   0      1     0   0   0
+   0   0   1      0  0     0   0   1      0     0   0   0
+   0   0   1      0  1     0   1   0      0     0   0   0
+   0   0   1      1  0     0   1   1      0     0   0   0
+   0   0   1      1  1     0   0   0      1     0   0   1
+   0   1   0      0  0     0   1   0      0     0   0   0
+   0   1   0      0  1     0   1   1      0     0   0   0
+   0   1   0      1  0     1   0   0      0     0   0   0
+   0   1   0      1  1     0   0   0      1     0   1   0
+   0   1   1      0  0     0   1   1      0     0   0   0
+   0   1   1      0  1     1   0   0      0     0   0   0
+   0   1   1      1  0     0   0   0      1     0   0   0
+   0   1   1      1  1     0   0   0      1     0   1   1
+   1   0   0      0  0     1   0   0      0     0   0   0
+   1   0   0      0  1     0   0   0      1     0   0   0
+   1   0   0      1  0     0   0   0      1     0   0   1
+   1   0   0      1  1     0   0   0      1     1   0   0
+4. How many bits will we need for ROM address?
+5
+5. How many bits will we need for ROM data?
+7
+6. Finally, use a ROM to implement said thing.

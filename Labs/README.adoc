@@ -119,3 +119,204 @@ state,input,next,vend,return
 |===
 
 https://github.com/lawrancej/COMP1200-2016/blob/master/Git.adoc[How to submit work]
+<<<<<<< HEAD
+=======
+
+== Lab 4: Machine language programming
+
+It's like CS1, all over again.
+
+Write out source code for a function that computes the maximum of two numbers.
+Yes, I know practically every language has a `max(a,b)` function,
+but I want you to write your own version for the https://github.com/lawrancej/COMP1200-2016/blob/master/Circuits/cpu-16bit-isa.adoc[CPU I supplied].
+
+----
+int a = RAM[0x80]
+int b = RAM[0x81]
+int max = a;
+if (b > a) {
+    max = b;
+}
+----
+
+1. Write out the equivalent assembly code for source code.
+One stipulation: the two numbers should be loaded from RAM.
+2. Write out equivalent machine code, and test it in Logisim,
+using the supplied CPU in `Circuits/cpu-16bit.circ`.
+3. Save the contents of RAM as lab4.txt.
+
+== Lab 5: Control unit as ROM
+
+Open `Circuits/cpu-16bit.circ` in Logisim.
+Replace the bus control's contents with a ROM, but leave the multiplexer alone, as show below:
+
+image:http://lawrancej.github.io/COMP2270-2015/labs/bus-control-rom.png[ROM replaces gates]
+
+The ROM should have 5 input (address) bits (corresponding to clock, cycle and op's 3 MSBs), and 4 output (data) bits (corresponding to reg write, ALU enable, bus read, bus write).
+We don't need the least significant bit of the opcode, because it does not influence the output in any way.
+
+*Hint*: poke on inputs to see what the corresponding output is, and note that in the table below.
+Then, take that table, and program (and connect) the ROM accordingly.
+
+NOTE: There's no state involved, it's purely combinational.
+
+IMPORTANT: Test your CPU to ensure that your code from the prior lab is still functional.
+If not, you goofed up.
+
+[format="csv",options="header"]
+|===
+ROM address,Op3,Op2,Op1,Cycle,Clock,,Reg write,ALU enable,Bus read,Bus write
+0,0,0,0,0,0,,,,,
+1,0,0,0,0,1,,,,,
+2,0,0,0,1,0,,,,,
+3,0,0,0,1,1,,,,,
+4,0,0,1,0,0,,,,,
+5,0,0,1,0,1,,,,,
+6,0,0,1,1,0,,,,,
+7,0,0,1,1,1,,,,,
+8,0,1,0,0,0,,,,,
+9,0,1,0,0,1,,,,,
+10,0,1,0,1,0,,,,,
+11,0,1,0,1,1,,,,,
+12,0,1,1,0,0,,,,,
+13,0,1,1,0,1,,,,,
+14,0,1,1,1,0,,,,,
+15,0,1,1,1,1,,,,,
+16,1,0,0,0,0,,,,,
+17,1,0,0,0,1,,,,,
+18,1,0,0,1,0,,,,,
+19,1,0,0,1,1,,,,,
+20,1,0,1,0,0,,,,,
+21,1,0,1,0,1,,,,,
+22,1,0,1,1,0,,,,,
+23,1,0,1,1,1,,,,,
+24,1,1,0,0,0,,,,,
+25,1,1,0,0,1,,,,,
+26,1,1,0,1,0,,,,,
+27,1,1,0,1,1,,,,,
+28,1,1,1,0,0,,,,,
+29,1,1,1,0,1,,,,,
+30,1,1,1,1,0,,,,,
+31,1,1,1,1,1,,,,,
+|===
+
+Save your work in a spreadsheet (and save the new Logisim CPU) and commit and push as usual.
+
+https://github.com/lawrancej/COMP1200-2016/blob/master/Git.adoc[How to submit work]
+
+== Lab 6: Project setup
+
+Setup to duild a CPU in Logisim and test it with machine code.
+
+The CPU should be programmable, but the data and program do not need to share the RAM.
+That is, the program could be in a separate ROM (read only memory) to simplify things.
+
+=== Speed dating
+
+Goal: find a partner or partners.
+
+Ideally, work in pairs.
+Working on this individually is *very* challenging and not recommended.
+Groups of 3 are okay, but larger groups are not recommended.
+
+=== Repository setup
+
+Goal: Set up your repository.
+
+----
+curl https://raw.githubusercontent.com/lawrancej/COMP1200Project/master/main.sh | bash
+----
+
+. Add each of your friend(s) as collaborators to your Github repository.
+. Add your friend(s) SSH urls to git.
+
+----
+cd ~/COMP1200Project
+git remote add somebody git@github.com:somebody/COMP1200Project.git
+git fetch --all
+----
+
+=== Overview
+
+Goal: Decide on the parameters of your http://en.wikipedia.org/wiki/Central_processing_unit[CPU].
+
+You may work on an existing CPU, including the one I supplied, but in that case,
+you need to clearly explain what you did to improve it.
+The best way to do this is to commit the existing CPU in your repository first
+and explain that it is your starting point.
+
+Example CPUs include:
+
+* http://minnie.tuhs.org/Programs/UcodeCPU/index.html[UcodeCPU]
+* http://minnie.tuhs.org/CompArch/Tutes/week03.html[Tutes]
+* http://dl.acm.org/citation.cfm?id=2445196.2445296&coll=DL&dl=ACM&CFID=725866919&CFTOKEN=92187912[Simple CPU]
+* https://github.com/briandef/bf16[Brainfuck]
+
+Answer these questions, but remember, you will need to write a demonstration program for this CPU.
+The easier it is to implement the CPU, the harder it may be to write demonstration code.
+
+==== Architecture
+
+http://en.wikipedia.org/wiki/Comparison_of_instruction_set_architectures[What kind of architecture is it?]
+Is this CPU a Harvard architecture or von Neumann architecture?
+
+NOTE: A Harvard architecture CPU (where program is in ROM and data is in RAM) is
+simpler to implement with few (if any) consequences on machine code complexity.
+
+==== Instructions
+
+Decide on an http://en.wikipedia.org/wiki/Instruction_set[instruction set].
+
+Examples:
+
+* https://en.wikipedia.org/wiki/CHIP-8[CHIP-8]
+* https://en.wikipedia.org/wiki/Brainfuck[Brainfuck]
+
+The CPU *must* support at minimum: conditional jumps, arithmetic, logic, and loading and storing data to RAM.
+Examples include: Brainfuck, http://www.bigmessowires.com/nibbler/[Nibbler], 6502, http://jasmin.sourceforge.net/[jvm]
+
+* How many instructions do you plan to implement?
+* What are they? (Keep in mind, some machines only implement a handful of instructions)
+* What is the maximum number of operands an instruction may have? (Usually, this is no more than 3)
+* How many bits will you use to encode each instruction?
+* Are instructions a fixed width? (It is far easier for it to be fixed width, btw)
+
+==== Registers
+
+How wide are the registers? 8 bits? 16 bits? 32 bits?
+
+How many registers do you plan to implement in the register file?
+At a minimum, you will need a register to point to the current instruction (the program counter),
+and a register to store the current instruction.
+You will likely need a register to store the current microcode instruction and program counter.
+In addition, you will need registers to store data.
+
+Machines without a register file exist: they use stacks instead (see http://jasmin.sourceforge.net/about.html[JVM assembly]).
+Obviously, a register is still necessary to keep track of where we are in the stack, but in a "stack machine" the register isn't referenced directly as an operand.
+Instead, push and pop operations implicitly change the stack register.
+
+Supporting multiple registers arguably simplifies machine coding, but large register files are tedious to implement.
+
+==== Hints
+
+Start with some existing CPU and modify it to work better in some meaningful way.
+
+Example improvements:
+
+Squeeze out instructions::
+* Remove some existing instruction to make room for better ones
+
+Modify instructions::
+* Replace LOAD Rd with LOAD Rd, Ra: Rd = RAM[Ra]
+* Split comparison from jump:
+** CMPEQ Ra Rb (set a 1-bit test flag register to Ra == Rb)
+** CMPLT Ra Rb (set a 1-bit test flag register to Ra < Rb)
+** JMP imm (jump to immediate if test flag is set)
+
+Memory-mapped I/O::
+* Loading from a special memory address reads from the keyboard buffer
+* Storing to a special memory address writes to the tty (screen)
+
+Fix reset::
+* Allow the reset button to also reset the phase of the CPU
+>>>>>>> f1c7f51d3c17babd75fdd5919b2e89f085b041e4
